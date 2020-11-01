@@ -27,7 +27,7 @@ namespace Reference.ShaderReference
         private int selectedTabID;
         private Dictionary<string, string> dicTexts;
 
-        private string FmdFloder = "Assets/Reference/EditorResources/fmd";
+        private string FmdFloder = "Assets/ShaderReference/EditorResources/fmd";
 
         #region  周期或者初始
 

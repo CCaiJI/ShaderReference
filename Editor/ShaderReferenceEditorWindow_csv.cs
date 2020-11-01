@@ -28,7 +28,7 @@ namespace Reference.ShaderReference
         private int selectedTabID;
         private Dictionary<string, string> dicTexts;
 
-        private string CsvFloder = "Assets/Reference/EditorResources/csv";
+        private string CsvFloder = "Assets/ShaderReference/EditorResources/csv";
 
         #region  周期或者初始
 

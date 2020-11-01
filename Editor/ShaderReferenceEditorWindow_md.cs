@@ -29,9 +29,9 @@ namespace Reference.ShaderReference
         public GUISkin Skin;
         MarkdownViewer mViewer;
 
-        private string MdFullPath(string tabName) => $"Assets/Reference/EditorResources/md/{tabName}.md";
-        private string MdFloder = "Assets/Reference/EditorResources/md";
-        private string SkinPath = $"Assets/Reference/EditorResources/md/MarkdownViewerSkin.guiskin";
+        private string MdFullPath(string tabName) => $"Assets/ShaderReference/EditorResources/md/{tabName}.md";
+        private string MdFloder = "Assets/ShaderReference/EditorResources/md";
+        private string SkinPath = $"Assets/ShaderReference/EditorResources/md/MarkdownViewerSkin.guiskin";
 
 
         #region  周期或者初始

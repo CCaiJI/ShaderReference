@@ -1,7 +1,7 @@
 {
     "name": "Unity.ShaderReference.Editor.asmdef",
     "references": [
-        "GUID:5f2f28fa72128b546ae1967c2dfe233b"
+        "GUID:2932b5a377c94144cb9bbb85320a7cd4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
