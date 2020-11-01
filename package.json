@@ -1,0 +1,15 @@
+{
+  "name": "com.actionf.shaderrefrence",
+  "version": "0.0.1",
+  "displayName": "Shader Reference",
+  "description": "Shader 参考文档",
+  "keywords": [
+    "Shader",
+    "参考文档"
+  ],
+  "author": {
+    "name": "CCaiJi",
+    "email": "zdyshanxiyue@gmail.com",
+    "url": "https://github.com/CCaiJI/Reference.git"
+  }
+}
