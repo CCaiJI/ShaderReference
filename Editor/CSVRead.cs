@@ -89,32 +89,11 @@ namespace Reference.Editor
                     Description = patterns[2],
                     Url = patterns[3],
                 };
-                info.Description = ParseCustomFuhao(info.Description);
-
+                info.Description = ReferenceUtil.ParseCustomFuhao(info.Description);
                 infos.Add(info);
             }
 
             return infos;
-        }
-
-
-        private static string ParseCustomFuhao(string dec)
-        {
-            dec = dec.Replace(@"\n", "\r\n");
-
-            if (dec.Contains("G<"))
-            {
-                dec = dec.Replace("G<", "<color=#00FF00>");
-                dec = dec.Replace(">G", "</color>"); 
-            }
-
-            if (dec.Contains("R<"))
-            {
-                dec = dec.Replace("R<", "<color=#FF0000>");
-                dec = dec.Replace(">R", "</color>");
-            }
-
-            return dec;
         }
     }
 }

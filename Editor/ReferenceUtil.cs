@@ -250,6 +250,29 @@ namespace Reference.ShaderReference
 
             return tempTab.ToArray();
         }
+        public static string ParseCustomFuhao(string dec)
+        {
+            if (string.IsNullOrEmpty(dec))
+            {
+                return dec;
+            }
+
+            dec = dec.Replace(@"\n", "\r\n");
+
+            if (dec.Contains("G<"))
+            {
+                dec = dec.Replace("G<", "<color=#00FF00>");
+                dec = dec.Replace(">G", "</color>"); 
+            }
+
+            if (dec.Contains("R<"))
+            {
+                dec = dec.Replace("R<", "<color=#FF0000>");
+                dec = dec.Replace(">R", "</color>");
+            }
+
+            return dec;
+        }
     }
 }
 #endif

@@ -103,7 +103,10 @@ namespace Reference.Editor
                     }
 
                     if (!TempItem.IsNull())
+                    {
+                        TempItem.Description = ReferenceUtil.ParseCustomFuhao(TempItem.Description);
                         infos.Add(TempItem);
+                    }
                 }
             }
 
@@ -183,7 +186,7 @@ namespace Reference.Editor
             {
                 var match = Regex.Match(temp.Value, Pattern_HuaKuohao);
                 line = temp.Value.Substring(match.Length + 1, temp.Length - match.Length - 2);
-                
+
                 return line;
             }
 
