@@ -259,16 +259,16 @@ namespace Reference.ShaderReference
 
             dec = dec.Replace(@"\n", "\r\n");
 
-            if (dec.Contains("G<"))
+            if (dec.Contains("G{"))
             {
-                dec = dec.Replace("G<", "<color=#00FF00>");
-                dec = dec.Replace(">G", "</color>"); 
+                dec = dec.Replace("G{", "<color=#00FF00>");
+                dec = dec.Replace("}G", "</color>"); 
             }
 
-            if (dec.Contains("R<"))
+            if (dec.Contains("R{"))
             {
-                dec = dec.Replace("R<", "<color=#FF0000>");
-                dec = dec.Replace(">R", "</color>");
+                dec = dec.Replace("R{", "<color=#FF0000>");
+                dec = dec.Replace("}R", "</color>");
             }
 
             return dec;
