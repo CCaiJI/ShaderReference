@@ -39,7 +39,7 @@ namespace Reference.Editor
 
         private void OnGUI()
         {
-            _scrollPos = GUILayout.BeginScrollView(_scrollPos, GUILayout.Height(500));
+            _scrollPos = GUILayout.BeginScrollView(_scrollPos, GUILayout.Height(_tex.height));
             if (_tex != null)
             {
                 GUILayout.Label(_tex, GUILayout.Width(_tex.width), GUILayout.Height(_tex.height));
