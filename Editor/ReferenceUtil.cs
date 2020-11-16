@@ -8,8 +8,11 @@
  */
 
 
+using System.Collections;
 using System.IO;
+using System.Threading.Tasks;
 using Reference.Editor;
+using UnityEngine.Networking;
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
@@ -26,6 +29,7 @@ namespace Reference.ShaderReference
         private static GUIStyle _LinkH2;
         private static GUIStyle _Tx_Dec;
         private static GUIStyle _style01;
+        private static GUIStyle _imgStyle;
 
         public static void Init()
         {
@@ -60,6 +64,9 @@ namespace Reference.ShaderReference
             _Tx_Dec.wordWrap = true;
             _Tx_Dec.richText = true;
             _Tx_Dec.fontSize = 14;
+
+            _imgStyle = new GUIStyle();
+            _imgStyle.alignment = TextAnchor.MiddleCenter;
         }
 
         public static void DrawTopBar(ICWin window)
@@ -125,8 +132,6 @@ namespace Reference.ShaderReference
 
             //说明样式
 
-
-            //绘制标题
             if (!string.IsNullOrEmpty(info.H1))
             {
                 GUILayout.BeginHorizontal();
@@ -168,6 +173,14 @@ namespace Reference.ShaderReference
             }
 
             //绘制标题
+            if (info.IsImage)
+            {
+                DrawTex(info);
+
+                return;
+            }
+
+            //绘制标题
             if (!string.IsNullOrEmpty(info.H1))
             {
                 GUILayout.BeginHorizontal();
@@ -204,6 +217,39 @@ namespace Reference.ShaderReference
                 EditorGUILayout.TextArea(info.H2, _style01);
                 EditorGUILayout.TextArea(info.Description, _Tx_Dec);
                 EditorGUILayout.EndVertical();
+            }
+        }
+
+        private static async void DrawTex(FMDItem info)
+        {
+            if (info.IsNotLoadUrl)
+            {
+                info.IsNotLoadUrl = false;
+                UnityWebRequest req = UnityWebRequestTexture.GetTexture(info.Url);
+                req.SendWebRequest();
+                while (!req.isDone)
+                {
+                    await Task.Delay(1000);
+                }
+                //  await Task.Delay(2000);
+
+                var tex = req.downloadHandler as DownloadHandlerTexture;
+                if (tex != null)
+                {
+                    info.Texture = tex.texture;
+                }
+
+                req.Dispose();
+            }
+            else if (info.Texture != null)
+            {
+                var width = 300 * (float) info.Texture.width / info.Texture.height;
+
+                if (GUILayout.Button(info.Texture, _imgStyle, GUILayout.Width(width),
+                    GUILayout.Height(300)))
+                {
+                    EditorTipWindow.Push(info.Texture);
+                }
             }
         }
 
@@ -250,6 +296,7 @@ namespace Reference.ShaderReference
 
             return tempTab.ToArray();
         }
+
         public static string ParseCustomFuhao(string dec)
         {
             if (string.IsNullOrEmpty(dec))
@@ -258,11 +305,10 @@ namespace Reference.ShaderReference
             }
 
             dec = dec.Replace(@"\n", "\r\n");
-
             if (dec.Contains("G{"))
             {
                 dec = dec.Replace("G{", "<color=#00FF00>");
-                dec = dec.Replace("}G", "</color>"); 
+                dec = dec.Replace("}G", "</color>");
             }
 
             if (dec.Contains("R{"))

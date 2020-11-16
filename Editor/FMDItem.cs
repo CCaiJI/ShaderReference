@@ -1,11 +1,16 @@
+using UnityEngine;
+
 namespace Reference.ShaderReference
 {
     public class FMDItem
     {
+        public bool IsImage;
         public string H1;
         public string H2;
         public string Url;
         public string Description;
+        public Texture Texture;
+        public bool IsNotLoadUrl=true;
 
         public bool Contains(string search)
         {

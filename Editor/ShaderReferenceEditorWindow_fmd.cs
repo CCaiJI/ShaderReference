@@ -145,7 +145,7 @@ namespace Reference.ShaderReference
             var key = tabNames[selectedIndex];
             if (!_dicInfos.ContainsKey(key))
             {
-                _dicInfos[key] = FMdRead.ReadMd(dicTexts[tabNames[selectedIndex]]);
+                _dicInfos[key] = FMdRead.ReadMd(dicTexts[tabNames[selectedIndex]],FmdFloder);
             }
 
             _curShow = _dicInfos[key];
