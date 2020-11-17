@@ -39,6 +39,7 @@ namespace Reference.Editor
         public static List<FMDItem> ReadMd(string fmd, string floder)
         {
             MdFloder = floder;
+            fmd = fmd.Replace(@"\#", "#");
             List<FMDItem> infos = new List<FMDItem>();
             string[] lines = fmd.Split(new[] {"\r\n"}, StringSplitOptions.None);
 

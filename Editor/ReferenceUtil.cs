@@ -307,14 +307,14 @@ namespace Reference.ShaderReference
             dec = dec.Replace(@"\n", "\r\n");
             if (dec.Contains("G{"))
             {
-                dec = dec.Replace("G{", "<color=#00FF00>");
-                dec = dec.Replace("}G", "</color>");
+                dec = dec.Replace("G{", "<size=20><i><b><color=#00FF00>");
+                dec = dec.Replace("}G", "</color></b></i></size>");
             }
 
             if (dec.Contains("R{"))
             {
-                dec = dec.Replace("R{", "<color=#FF0000>");
-                dec = dec.Replace("}R", "</color>");
+                dec = dec.Replace("R{", "<size=20><i><b><color=#FF0000>");
+                dec = dec.Replace("}R", "</color></b></i></size>");
             }
 
             return dec;
