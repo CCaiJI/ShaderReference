@@ -6,32 +6,40 @@ using UnityEngine;
 
 namespace MG.MDV
 {
-    [CustomEditor( typeof( TextAsset ) )]
+    [CustomEditor(typeof(TextAsset))]
     public class MarkdownEditor : Editor
     {
         public GUISkin Skin;
 
         MarkdownViewer mViewer;
 
-        private static List<string> mExtensions = new List<string> { ".md", ".markdown" };
+        private static List<string> mExtensions = new List<string> {".md", ".markdown"};
 
         protected void OnEnable()
         {
-            var content = ( target as TextAsset ).text;
-            var path    = AssetDatabase.GetAssetPath( target );
+            var content = (target as TextAsset).text;
+            var path = AssetDatabase.GetAssetPath(target);
 
-            var ext = Path.GetExtension( path ).ToLower();
+            var ext = Path.GetExtension(path).ToLower();
 
-            if( mExtensions.Contains( ext ) )
+            string dir = @"Assets/ShaderReference/Plugins/UnityMarkdownViewer/Editor/Skin/MarkdownViewerSkin.guiskin";
+            Skin = AssetDatabase.LoadAssetAtPath<GUISkin>(dir);
+            if (Skin == null)
             {
-                mViewer = new MarkdownViewer( Skin, path, content );
+                Skin = new GUISkin();
+                Skin.label.normal.textColor=Color.black;
+            }
+
+            if (mExtensions.Contains(ext))
+            {
+                mViewer = new MarkdownViewer(Skin, path, content);
                 EditorApplication.update += UpdateRequests;
             }
         }
 
         protected void OnDisable()
         {
-            if( mViewer != null )
+            if (mViewer != null)
             {
                 EditorApplication.update -= UpdateRequests;
                 mViewer = null;
@@ -40,7 +48,7 @@ namespace MG.MDV
 
         void UpdateRequests()
         {
-            if( mViewer != null && mViewer.Update() )
+            if (mViewer != null && mViewer.Update())
             {
                 Repaint();
             }
@@ -75,7 +83,7 @@ namespace MG.MDV
 
         void DrawEditor()
         {
-            if( mViewer != null )
+            if (mViewer != null)
             {
                 mViewer.Draw();
             }
@@ -87,9 +95,10 @@ namespace MG.MDV
 
         void DrawDefaultEditor()
         {
-            mDefaultEditor = mDefaultEditor ?? CreateEditor( target, Type.GetType( "UnityEditor.TextAssetInspector, UnityEditor" ) );
+            mDefaultEditor = mDefaultEditor ??
+                             CreateEditor(target, Type.GetType("UnityEditor.TextAssetInspector, UnityEditor"));
 
-            if( mDefaultEditor != null )
+            if (mDefaultEditor != null)
             {
                 mDefaultEditor.OnInspectorGUI();
             }

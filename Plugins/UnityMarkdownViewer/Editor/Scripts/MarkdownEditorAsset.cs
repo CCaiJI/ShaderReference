@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 namespace MG.MDV
@@ -15,6 +16,9 @@ namespace MG.MDV
             var content = ( target as MarkdownAsset ).text;
             var path    = AssetDatabase.GetAssetPath( target );
 
+            string dir =@"Assets/ShaderReference/Plugins/UnityMarkdownViewer/Editor/Skin/MarkdownViewerSkin.guiskin";
+            Skin = AssetDatabase.LoadAssetAtPath<GUISkin>(dir);
+            Debug.Log(Skin);
             mViewer = new MarkdownViewer( Skin, path, content );
             EditorApplication.update += UpdateRequests;
         }
