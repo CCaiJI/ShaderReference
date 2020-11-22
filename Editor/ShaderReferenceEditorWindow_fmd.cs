@@ -9,10 +9,9 @@
 
 
 using ShaderReference.Editor;
-#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Text;
-using Reference.Editor;
+using ShaderReference.Editor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -163,4 +162,3 @@ namespace Reference.ShaderReference
       
     }
 }
-#endif

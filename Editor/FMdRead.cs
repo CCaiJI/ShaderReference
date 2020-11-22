@@ -7,7 +7,7 @@ using Reference.ShaderReference;
 using ShaderReference.Editor;
 using UnityEngine;
 
-namespace Reference.Editor
+namespace ShaderReference.Editor
 {
     public class FMdRead
     {

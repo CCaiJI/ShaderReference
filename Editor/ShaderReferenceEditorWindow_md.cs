@@ -11,10 +11,9 @@
 using System.IO;
 using MG.MDV;
 using ShaderReference.Editor;
-#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Text;
-using Reference.Editor;
+using ShaderReference.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -148,4 +147,3 @@ namespace Reference.ShaderReference
         }
     }
 }
-#endif

@@ -1,4 +1,4 @@
-namespace Reference.ShaderReference
+namespace ShaderReference.Editor
 {
     public struct CSVItem
     {

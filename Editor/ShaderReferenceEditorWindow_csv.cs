@@ -13,7 +13,7 @@ using File = System.IO.File;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Reference.Editor;
+using ShaderReference.Editor;
 using UnityEditor;
 using UnityEngine;
 

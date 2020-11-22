@@ -5,7 +5,7 @@ using System.Text;
 using Reference.ShaderReference;
 using TreeEditor;
 
-namespace Reference.Editor
+namespace ShaderReference.Editor
 {
     public class MyCSVRead
     {

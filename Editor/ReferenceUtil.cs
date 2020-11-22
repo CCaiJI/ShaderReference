@@ -11,9 +11,8 @@
 using System.Collections;
 using System.IO;
 using System.Threading.Tasks;
-using Reference.Editor;
+using ShaderReference.Editor;
 using UnityEngine.Networking;
-#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -301,4 +300,3 @@ namespace Reference.ShaderReference
         }
     }
 }
-#endif

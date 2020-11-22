@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Reference.Editor
+namespace ShaderReference.Editor
 {
     public class EditorTipWindow : EditorWindow
     {

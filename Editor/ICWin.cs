@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace Reference.Editor
+namespace ShaderReference.Editor
 {
     public abstract class ICWin : EditorWindow
     {
