@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Reference.ShaderReference;
+using ShaderReference.Editor;
 using UnityEngine;
 
 namespace Reference.Editor
@@ -269,7 +270,8 @@ namespace Reference.Editor
                 return url;
             }
 
-            var projectDir = Path.GetDirectoryName(Application.dataPath);
+            string path = Application.dataPath.Substring(0, Application.dataPath.Length - "assets".Length);
+            var projectDir = path + ResLoadUnlit._relativePath;
 
             if (url.StartsWith("/"))
             {

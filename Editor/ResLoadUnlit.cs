@@ -11,17 +11,17 @@ namespace ShaderReference.Editor
             @"Assets\ShaderReference\EditorResources\MarkdownViewerSkin.guiskin";
 
         private const string pkgName = "com.actionf.shaderrefrence";
-        private static string _relativePath;
+        public static string _relativePath { get; private set; }
 
         static ResLoadUnlit()
         {
-            _relativePath = GetPackageRelativePath();
+            _relativePath = GetPackageRelativePath()+"/EditorResources";
         }
 
         public static Dictionary<string, string> LoadTextAsset(string floder, string suffix)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            string[] filePaths = Directory.GetFiles($"{_relativePath}/EditorResources/{floder}");
+            string[] filePaths = Directory.GetFiles($"{_relativePath}/{floder}");
             string tempPath;
             string extenTemp;
             string fileName;
