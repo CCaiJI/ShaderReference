@@ -224,21 +224,30 @@ namespace Reference.ShaderReference
             if (info.IsNotLoadUrl)
             {
                 info.IsNotLoadUrl = false;
-                UnityWebRequest req = UnityWebRequestTexture.GetTexture(info.Url);
-                req.SendWebRequest();
-                while (!req.isDone)
+                if (!info.Url.Contains("http"))
                 {
-                    await Task.Delay(1000);
+                    string path= $"tex/{Path.GetFileName(info.Url)}";
+                    Texture2D tex = ResLoadUnlit.GetAssetInPackageByRelative<Texture2D>(path);
+                    info.Texture = tex;
                 }
-                //  await Task.Delay(2000);
-
-                var tex = req.downloadHandler as DownloadHandlerTexture;
-                if (tex != null)
+                else
                 {
-                    info.Texture = tex.texture;
-                }
+                    UnityWebRequest req = UnityWebRequestTexture.GetTexture(info.Url);
+                    req.SendWebRequest();
+                    while (!req.isDone)
+                    {
+                        await Task.Delay(1000);
+                    }
 
-                req.Dispose();
+                    var tex = req.downloadHandler as DownloadHandlerTexture;
+                    if (tex != null)
+                    {
+                        info.Texture = tex.texture;
+                    }
+
+                    //  await Task.Delay(2000);
+                    req.Dispose();
+                }
             }
             else if (info.Texture != null)
             {
@@ -275,7 +284,7 @@ namespace Reference.ShaderReference
             GUILayout.EndHorizontal();
         }
 
-        
+
         public static string ParseCustomFuhao(string dec)
         {
             if (string.IsNullOrEmpty(dec))
