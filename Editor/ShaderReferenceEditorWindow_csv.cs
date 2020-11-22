@@ -8,6 +8,7 @@
  */
 
 
+using ShaderReference.Editor;
 using File = System.IO.File;
 #if UNITY_EDITOR
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Reference.ShaderReference
         private int selectedTabID;
         private Dictionary<string, string> dicTexts;
 
-        private string CsvFloder = "Assets/ShaderReference/EditorResources/csv";
+        private string CsvFloder = "csv";
 
         #region  周期或者初始
 
@@ -45,21 +46,9 @@ namespace Reference.ShaderReference
             ReferenceUtil.Init();
             dicTexts = new Dictionary<string, string>();
 
-            tabNames = ReferenceUtil.GetTabNames(".csv", new string[] {CsvFloder});
-
-            for (int i = 0; i < tabNames.Length; i++)
-            {
-                var textAsset =
-                    AssetDatabase.LoadAssetAtPath<TextAsset>($"{CsvFloder}/{tabNames[i]}.csv");
-                if (textAsset == null)
-                {
-                    dicTexts[tabNames[i]] = "";
-                }
-                else
-                {
-                    dicTexts[tabNames[i]] = textAsset.text;
-                }
-            }
+            dicTexts= ResLoadUnlit.LoadTextAsset(CsvFloder, ".csv");
+            tabNames=new string[dicTexts.Count];
+            dicTexts.Keys.CopyTo(tabNames, 0);
 
 
             selectedTabID = EditorPrefs.GetInt("ShaderRef_SeletedIndex_csv", 0);

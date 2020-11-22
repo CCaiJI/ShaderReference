@@ -276,27 +276,7 @@ namespace Reference.ShaderReference
             GUILayout.EndHorizontal();
         }
 
-
-        public static string[] GetTabNames(string exten, string[] floder)
-        {
-            var texGuids =
-                AssetDatabase.FindAssets("t:Object", floder);
-
-            List<string> tempTab = new List<string>();
-            for (int i = 0;
-                i < texGuids.Length;
-                i++)
-            {
-                string tempPath = AssetDatabase.GUIDToAssetPath(texGuids[i]);
-                if (Path.GetExtension(tempPath) == exten)
-                {
-                    tempTab.Add(Path.GetFileNameWithoutExtension(path: tempPath));
-                }
-            }
-
-            return tempTab.ToArray();
-        }
-
+        
         public static string ParseCustomFuhao(string dec)
         {
             if (string.IsNullOrEmpty(dec))

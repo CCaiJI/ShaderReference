@@ -8,6 +8,7 @@
  */
 
 
+using ShaderReference.Editor;
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Text;
@@ -27,7 +28,7 @@ namespace Reference.ShaderReference
         private int selectedTabID;
         private Dictionary<string, string> dicTexts;
 
-        private string FmdFloder = "Assets/ShaderReference/EditorResources/fmd";
+        private string FmdFloder = "fmd";
 
         #region  周期或者初始
 
@@ -42,28 +43,11 @@ namespace Reference.ShaderReference
         void OnEnable()
         {
             ReferenceUtil.Init();
-            dicTexts = new Dictionary<string, string>();
+            dicTexts= ResLoadUnlit.LoadTextAsset(FmdFloder, ".md");
+            tabNames=new string[dicTexts.Count];
+            dicTexts.Keys.CopyTo(tabNames, 0);
 
-            tabNames = ReferenceUtil.GetTabNames(".md", new string[] {FmdFloder});
-
-            for (int i = 0; i < tabNames.Length; i++)
-            {
-                byte[] bytes = UnityEngine.Windows.File.ReadAllBytes($"{FmdFloder}/{tabNames[i]}.md");
-                string text = UTF8Encoding.UTF8.GetString(bytes);
-                /*var textAsset =
-                    AssetDatabase.LoadAssetAtPath<TextAsset>();
-                if (textAsset == null)
-                {
-                    dicTexts[tabNames[i]] = "";
-                }
-                else
-                {
-                    dicTexts[tabNames[i]] = textAsset.text;
-                }*/
-                dicTexts[tabNames[i]] = text;
-            }
-            
-            selectedTabID = EditorPrefs.GetInt("ShaderRef_SeletedIndex_csv", 0);
+             selectedTabID = EditorPrefs.GetInt("ShaderRef_SeletedIndex_csv", 0);
             FillMDList(selectedTabID);
         }
 

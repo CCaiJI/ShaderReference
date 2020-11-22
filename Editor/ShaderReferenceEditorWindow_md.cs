@@ -10,6 +10,7 @@
 
 using System.IO;
 using MG.MDV;
+using ShaderReference.Editor;
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Text;
@@ -29,9 +30,9 @@ namespace Reference.ShaderReference
         public GUISkin Skin;
         MarkdownViewer mViewer;
 
-        private string MdFullPath(string tabName) => $"Assets/ShaderReference/EditorResources/md/{tabName}.md";
-        private string MdFloder = "Assets/ShaderReference/EditorResources/md";
-        private string SkinPath = $"Assets/ShaderReference/EditorResources/md/MarkdownViewerSkin.guiskin";
+        private string MdFullPath(string tabName) => $"md/{tabName}.md";
+        private string MdFloder = "md";
+        private string SkinPath = $"md/MarkdownViewerSkin.guiskin";
 
 
         #region  周期或者初始
@@ -50,26 +51,11 @@ namespace Reference.ShaderReference
             ReferenceUtil.Init();
             dicTexts = new Dictionary<string, string>();
 
-            Skin =
-                AssetDatabase.LoadAssetAtPath<GUISkin>(SkinPath);
+            Skin = ResLoadUnlit.GetAssetInPackageByRelative<GUISkin>(SkinPath);
 
-            tabNames = ReferenceUtil.GetTabNames(".md", new string[] {MdFloder});
-
-            for (int i = 0; i < tabNames.Length; i++)
-            {
-                var textAsset =
-                    AssetDatabase.LoadAssetAtPath<TextAsset>(MdFullPath(tabNames[i]));
-
-                if (textAsset == null)
-                {
-                    dicTexts[tabNames[i]] = "";
-                }
-                else
-                {
-                    dicTexts[tabNames[i]] = textAsset.text;
-                }
-            }
-
+            dicTexts= ResLoadUnlit.LoadTextAsset(MdFloder, ".md");
+            tabNames=new string[dicTexts.Count];
+            dicTexts.Keys.CopyTo(tabNames, 0);
 
             selectedTabID = EditorPrefs.GetInt("ShaderRef_SeletedIndex_md", 0);
             FillMd(selectedTabID);
@@ -79,7 +65,7 @@ namespace Reference.ShaderReference
         {
             EditorPrefs.SetInt("ShaderRef_SeletedIndex_md", selectedTabID);
         }
-        
+
         public override void ReOpen()
         {
             this.Close();
