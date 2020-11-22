@@ -10,7 +10,6 @@
 
 using ShaderReference.Editor;
 using File = System.IO.File;
-#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -169,4 +168,3 @@ namespace Reference.ShaderReference
         }
     }
 }
-#endif
