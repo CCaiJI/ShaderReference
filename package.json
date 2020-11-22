@@ -1,6 +1,6 @@
 {
   "name": "com.actionf.shaderrefrence",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "Shader Reference",
   "description": "Shader 参考文档",
   "keywords": [
@@ -8,8 +8,8 @@
     "参考文档"
   ],
   "author": {
-    "name": "CCaiJi",
-    "email": "zdyshanxiyue@gmail.com",
+    "name": "ActionF",
+    "email": "2597233135@qq.com",
     "url": "https://e.coding.net/actionf/upm/ShaderReference.git"
   }
 }
