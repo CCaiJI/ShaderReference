@@ -39,10 +39,14 @@ namespace ShaderReference.Editor
 
         private void OnGUI()
         {
-            _scrollPos = GUILayout.BeginScrollView(_scrollPos, GUILayout.Height(_tex.height));
+          
             if (_tex != null)
             {
                 GUILayout.Label(_tex, GUILayout.Width(_tex.width), GUILayout.Height(_tex.height));
+            }
+            else
+            {
+                _scrollPos = GUILayout.BeginScrollView(_scrollPos, GUILayout.Height(300));
             }
 
             if (!string.IsNullOrEmpty(_message))
